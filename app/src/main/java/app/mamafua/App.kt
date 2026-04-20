@@ -5,6 +5,7 @@ import app.mamafua.di.DataModule
 import app.mamafua.di.DatabaseModule
 import app.mamafua.di.DomainModule
 import app.mamafua.di.PreferencesModule
+import app.mamafua.feature.auth.di.AuthModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -26,7 +27,8 @@ class App: Application() {
                 DataModule,
                 DomainModule,
                 DatabaseModule,
-                PreferencesModule
+                PreferencesModule,
+                AuthModule
             )
         }
     }

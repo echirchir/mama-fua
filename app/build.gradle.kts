@@ -65,6 +65,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":feature:auth"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
