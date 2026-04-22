@@ -19,14 +19,14 @@ fun NavGraphBuilder.authFeatNavGraph(
     composable(
         route = SIGN_UP_HOME
     ) {
-        BackHandler(onBack = {})
+        BackHandler(enabled = true) {}
         SignUpScreen()
     }
 
     composable(
         route = SIGN_IN_HOME
     ) {
-        BackHandler(onBack = {})
+        BackHandler(enabled = true) {}
         SignInScreen()
     }
 }
