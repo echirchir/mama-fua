@@ -20,6 +20,9 @@ release/
 build/
 */build/
 **/build/
+.idea/compiler.xml
+ .idea/inspectionProfiles/Project_Default.xml
+ .idea/misc.xml
 
 # Local configuration file (sdk path, etc)
 local.properties
