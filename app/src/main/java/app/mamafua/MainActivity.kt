@@ -16,6 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import app.mamafua.feature.auth.navigation.SIGN_UP_HOME
+import app.mamafua.feature.auth.navigation.authFeatNavGraph
 import app.mamafua.ui.theme.MamaFuaTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +29,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
+
+            val navController = rememberNavController()
+
             MamaFuaTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -38,7 +45,12 @@ class MainActivity : ComponentActivity() {
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            Greeting("Mama Fua")
+                            NavHost(
+                                navController = navController,
+                                startDestination = SIGN_UP_HOME
+                            ) {
+                                authFeatNavGraph(navController)
+                            }
                         }
                     }
                 }

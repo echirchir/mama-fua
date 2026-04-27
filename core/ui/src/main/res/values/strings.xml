@@ -18,4 +18,7 @@
     <string name="thats_a_bummer">That\'s a bummer!</string>
     <string name="were_working_hard_to_improve">We\'re working hard to improve</string>
     <string name="tell_us_more_about_your_experience">Tell us more about your experience</string>
+
+    <!-- Auth -->
+    <string name="get_started">Get Started</string>
 </resources>

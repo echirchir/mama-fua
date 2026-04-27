@@ -1,37 +1,27 @@
-import com.android.build.api.dsl.Lint
-import com.android.build.api.dsl.Packaging
-
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "app.mamafua"
+    namespace = "app.mamafua.feature.auth"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "app.mamafua"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        debug {
-            buildConfigField("String", "BASE_URL", "\"https://api.mamafua.app/api/\"")
-        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://api.mamafua.app/api/\"")
         }
     }
     compileOptions {
@@ -41,44 +31,25 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
-    buildFeatures {
-        compose = true
-        buildConfig = true
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "*/*/libscm.so"
-        }
-    }
-
-    lint {
-        abortOnError = false
-        checkReleaseBuilds = false
-    }
 }
 
 dependencies {
 
     implementation(project(":core:ui"))
-    implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":feature:auth"))
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.androidx.compose.navigation)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-
-    // timber
+    implementation(libs.androidx.biometric)
+    implementation(libs.lottie.compose)
+    implementation(libs.lottie)
     implementation(libs.timber)
+
 
     // koin
     implementation(libs.koin.compose)
@@ -87,11 +58,21 @@ dependencies {
     implementation(libs.koin.test)
     implementation(libs.koin.junit)
 
+    implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
+    implementation(libs.material.icons)
+
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.lifecycle.viewmodel.compose.android)
+    implementation(libs.androidx.compose.navigation)
+
+    implementation(libs.android.gson)
+    implementation(libs.androidx.exifinterface)
+
+    // tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 }
